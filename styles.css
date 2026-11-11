@@ -1,23 +1,23 @@
-
 body {
-    background-color: rgb(200,200,200);
-    color: rgb(0,0,0);
-    font-family: "Open Sans", sans-serif;
+	color: rgb(0, 0, 0);
+    background-color: rgb(200, 200, 200);
+    font-family: "consolas";
     text-align: center;
+	
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 98vh; 
 }
 
 #content {
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-}
-
-header {
-	
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 footer {
-	font-style: italic;
-	font-size: 90%;
+	font-size: 90%; 
+	padding-top: 1.5%; 
+	padding-bottom: 1.5%; 
 }
-
