@@ -1,94 +1,81 @@
-Star[] stars = new Star[15]; 
-Spaceship ship = new Spaceship(); 
-char k = ' '; 
-
-public void setup() { 
+class Asteroid extends Floater { 
   
-  background(0); 
-  size(400, 400); 
-  noStroke(); 
+  protected double rotationSpeed; 
   
-  for (int i = 0; i < stars.length; i++) 
-    stars[i] = new Star(); 
+  //constructor 
+  public Asteroid() { 
+    corners = 4; 
+    xCorners = new int[]{8, 10, -2, -5}; 
+    yCorners = new int[]{0, 5, 3, -5}; 
     
-} 
-
-public void draw() { 
-  
-  background(0); 
-  
-  for (Star s : stars) { 
-    s.show(); 
-    s.move(); 
+    myColor = color(255, 255, 255); 
+    myCenterX = (int)(Math.random()*400); 
+    myCenterY = (int)(Math.random()*400); 
+    myXspeed = Math.random()*3-1; 
+    myYspeed = Math.random()*3-1; 
+    myPointDirection = Math.random()*360; 
+    rotationSpeed = Math.random()*3-1; 
   } 
   
-  ship.show(); 
-  ship.move(); 
-  ship.TEMP(); 
-  
-} 
-
-public void keyPressed() { 
-  
-  k = key; 
-  
-  switch (k) { 
+  //@override move 
+  public void move () { 
     
-    case 'a': 
-      ship.turn(-5); 
-      break; 
-      
-    case 'd': 
-      ship.turn(5); 
-      break; 
-      
-    case 'w': 
-      if (ship.getXS() <= 15.0 && ship.getXS() >= -15.0) 
-        ship.accelerateX(3.0); 
-      if (ship.getYS() <= 15.0 && ship.getYS() >= -15.0) 
-        ship.accelerateY(3.0); 
-      break; 
-      
-    case 'h': 
-      ship.hyperSpace(); 
-      break; 
-      
+    turn(rotationSpeed); 
+    super.move(); 
+    
+    myCenterX += myXspeed; 
+    myCenterY += myYspeed; 
+    
+    //wrap around screen 
+    if(myCenterX > width)   
+      myCenterX = 0; 
+    else if (myCenterX < 0) 
+      myCenterX = width; 
+    if(myCenterY > height) 
+      myCenterY = 0; 
+    else if (myCenterY < 0) 
+      myCenterY = height; 
+    
   } 
   
-} 
+  //setters 
+  public void setCX(int n) { 
+    myCenterX = n; 
+  } 
+  public void setCY(int n) { 
+    myCenterY = n; 
+  } 
+  public void setPD(int n) { 
+    myPointDirection = n; 
+  } 
+  public void setXS(double n) { 
+    myXspeed = n; 
+  } 
+  public void setYS(double n) { 
+    myYspeed = n; 
+  } 
+  public void setRotationSpeed(double n) {
+    rotationSpeed = n; 
+  } 
 
-public void keyReleased() { 
-  
-  char p = k; 
-  k = ' '; 
-  
-  switch (p) { 
-    
-    case 'w': 
-      if (ship.getXS() > 0) { 
-        while (ship.getXS() > 0.1) 
-          ship.setXS(ship.getXS() * 0.7); 
-      } else if (ship.getXS() < 0) { 
-        while (ship.getXS() < -0.1) 
-        ship.setXS(ship.getXS() * 0.7); 
-      } 
-      if (ship.getYS() > 0) {
-        while (ship.getYS() > 0.1) 
-          ship.setYS(ship.getYS() * 0.7); 
-      } else if (ship.getYS() < 0) {
-        while (ship.getYS() < -0.1) 
-          ship.setYS(ship.getYS() * 0.7); 
-      } 
-      break; 
-      
-    case 'd': 
-      System.out.println("d released"); 
-      break; 
-      
-    case 'a': 
-      System.out.println("a released"); 
-      break; 
-      
+  //getters 
+  public double getCX() { 
+    return myCenterX; 
+  }
+  public double getCY() { 
+    return myCenterY; 
+  }
+  public double getPD() { 
+    return myPointDirection; 
+  }
+  public double getXS() { 
+    return myXspeed; 
+  }
+  public double getYS() { 
+    return myYspeed; 
+  } 
+  public double getRotationSpeed() {
+    return rotationSpeed; 
   } 
   
 } 
