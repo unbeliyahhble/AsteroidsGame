@@ -34,7 +34,7 @@ class Spaceship extends Floater {
   } 
   
   //show ref vars 
-  public void TEMP() { 
+  public void showShipInfo() { 
     fill(255); 
     text("center x: " + round((float)myCenterX), 5, 12); 
     text("center y: " + round((float)myCenterY), 5, 22); 
