@@ -1,4 +1,4 @@
-ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>(); 
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid> (); 
 Spaceship ship = new Spaceship(); 
 Star[] stars = new Star[15]; 
 char k = ' '; 
