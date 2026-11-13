@@ -24,7 +24,7 @@ public void draw() {
   
   ship.show(); 
   ship.move(); 
-  ship.TEMP(); 
+  ship.showShipInfo(); 
   
 } 
 
@@ -79,14 +79,6 @@ public void keyReleased() {
         while (ship.getYS() < -0.1) 
           ship.setYS(ship.getYS() * 0.7); 
       } 
-      break; 
-      
-    case 'd': 
-      System.out.println("d released"); 
-      break; 
-      
-    case 'a': 
-      System.out.println("a released"); 
       break; 
       
   } 
