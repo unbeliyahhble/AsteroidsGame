@@ -30,7 +30,6 @@ public void draw() {
     if (dist((float)ship.getCX(), (float)ship.getCY(), (float)a.getCX(), (float)a.getCY()) < 13) {
       asteroids.remove(i); 
       i--; 
-      ship.setHealth(ship.getHealth()-1); 
     } else { 
       a.show(); 
       a.move(); 
