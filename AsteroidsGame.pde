@@ -1,17 +1,7 @@
-//to do: 
-//  - different size asteroids 
-//  - health 
-//  - point system 
-//  - win/lose 
-//  - start/win/lose screen 
-//  - asteroids split 
-
-ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>(); 
-ArrayList<Bullet> bullets = new ArrayList<Bullet>(); 
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid> (); 
 Spaceship ship = new Spaceship(); 
 Star[] stars = new Star[15]; 
 
-int gameState = 0; 
 char k = ' '; 
 
 public void setup() { 
@@ -28,36 +18,12 @@ public void draw() {
   
   background(0); 
   
-  if (asteroids.size() == 0) {
-    gameState = 1; 
-  } else if (ship.getHealth() == 0) {
-    gameState = -1; 
-  } 
-  
-  bullets.forEach(b -> {b.show(); b.move();}); 
-  
   for (Star s : stars) { 
     s.show(); 
     s.move(); 
   } 
   
   for (int i = 0; i < asteroids.size(); i++) { 
-    
-    Asteroid a = asteroids.get(i); 
-    
-    for (int j = 0; j < bullets.size(); j++) { 
-      
-      Bullet b = bullets.get(j); 
-      
-      if (dist((float)a.getCX(), (float)a.getCY(), (float)b.getCX(), (float)b.getCY()) < 13) {
-        asteroids.remove(i); 
-        i--; 
-        bullets.remove(j); 
-        j--; 
-        break; 
-      } 
-      
-    } 
     
     if (dist((float)ship.getCX(), (float)ship.getCY(), (float)a.getCX(), (float)a.getCY()) < 13) {
       asteroids.remove(i); 
@@ -131,12 +97,6 @@ public void keyReleased() {
         while (ship.getYS() < -(cap)) 
           ship.setYS(ship.getYS() * dec); 
       } 
-      break; 
-      
-    case 's': 
-      Bullet b = new Bullet(ship); 
-      b.accelerate(6.0); 
-      bullets.add(b); 
       break; 
       
   } 
