@@ -36,11 +36,11 @@ class Spaceship extends Floater {
   //show ref vars 
   public void TEMP() { 
     fill(255); 
-    text("center x: " + round((float)myCenterX), 5, 12); 
-    text("center y: " + round((float)myCenterY), 5, 22); 
-    text("speed x: " + myXspeed, 5, 32); 
-    text("speed y: " + myYspeed, 5, 42); 
-    text("rotation: " + myPointDirection, 5, 52); 
+    text("center x: " + round((float)myCenterX), 5, 15); 
+    text("center y: " + round((float)myCenterY), 5, 25); 
+    text("speed x: " + myXspeed, 5, 35); 
+    text("speed y: " + myYspeed, 5, 45); 
+    text("rotation: " + myPointDirection, 5, 55); 
   } 
   
   //setters 
