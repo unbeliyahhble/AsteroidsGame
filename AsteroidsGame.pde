@@ -24,6 +24,8 @@ public void draw() {
   } 
   
   for (int i = 0; i < asteroids.size(); i++) { 
+
+    Asteroid a = asteroids.get(i); 
     
     if (dist((float)ship.getCX(), (float)ship.getCY(), (float)a.getCX(), (float)a.getCY()) < 13) {
       asteroids.remove(i); 
