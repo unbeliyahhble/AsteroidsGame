@@ -1,16 +1,34 @@
 class Spaceship extends Floater { 
   
+  protected int health; 
+  protected int hitBox; 
+  
   //constructor 
   public Spaceship() { 
     corners = 4; 
     xCorners = new int[]{8, -5, -2, -5}; 
     yCorners = new int[]{0, 5, 0, -5}; 
-    
     myColor = color(255); 
     myCenterX = 200; 
     myCenterY = 200; 
     myXspeed = myYspeed = 0; 
     myPointDirection = 0; 
+    health = 10; 
+    hitBox = 9; 
+  } 
+  
+  //constructor 2 
+  public Spaceship(int h) { 
+    corners = 4; 
+    xCorners = new int[]{8, -5, -2, -5}; 
+    yCorners = new int[]{0, 5, 0, -5}; 
+    myColor = color(255); 
+    myCenterX = 200; 
+    myCenterY = 200; 
+    myXspeed = myYspeed = 0; 
+    myPointDirection = 0; 
+    health = h; 
+    hitBox = 9; 
   } 
   
   //hyperspace 
@@ -33,14 +51,15 @@ class Spaceship extends Floater {
     myYspeed += ((dAmount) * Math.sin(dRadians)); 
   } 
   
-  //show ref vars 
-  public void TEMP() { 
+  //show info 
+  public void showShipInfo() { 
+    PFont f = createFont("Consolas", 32);
+    textFont(f); 
     fill(255); 
-    text("center x: " + round((float)myCenterX), 5, 12); 
-    text("center y: " + round((float)myCenterY), 5, 22); 
-    text("speed x: " + myXspeed, 5, 32); 
-    text("speed y: " + myYspeed, 5, 42); 
-    text("rotation: " + myPointDirection, 5, 52); 
+    textAlign(LEFT); 
+    textSize(12); 
+    text("health: " + health, 5, 15); 
+    text("center: (" + round((float)myCenterX) + "," + round((float)myCenterY) + ")", 5, 395); 
   } 
   
   //setters 
@@ -59,6 +78,12 @@ class Spaceship extends Floater {
   public void setYS(double n) { 
     myYspeed = n; 
   } 
+  public void setH(int n) { 
+    health = n; 
+  } 
+  public void setHB(int n) {
+    hitBox = n; 
+  } 
 
   //getters 
   public double getCX() { 
@@ -75,6 +100,12 @@ class Spaceship extends Floater {
   }
   public double getYS() { 
     return myYspeed; 
+  } 
+  public int getH() { 
+    return health; 
+  } 
+  public int getHB() {
+    return hitBox; 
   } 
   
 } 
