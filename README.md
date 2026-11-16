@@ -1,42 +1,38 @@
-Asteroids (Part 1)
+Asteroids (Part 3) 
 ==================
-In this assignment we will start to replicate the old video game Asteroids. You will write a program that has a space ship that can be controlled by a player. You will need to write a `Spaceship` class as well as a `Star` class for the background. Your `Spaceship` class will extend the `Floater` class, a class that represents all things that float in space. _Note: To complete this assignment you will be writing two classes `Spaceship` and `Star`. Do not modify the `Floater` class._ You may find the [Asteroids Part 1 slide presentation](https://docs.google.com/presentation/d/1xEIchvoA0s2BO-HB8g9wjk1jSBH8sq9Gtkij5Y7slOs/edit) helpful in completing this assignment.
+Adding bullets and finishing the game
+-------------------------------------
+To finish our Asteroids game, we need to write a new class that represents Bullets. We will store the Bullets in an `ArrayList` much like we did with the Asteroids. Once we can shoot the bullets and destroy Asteroids, we will have a working game. Your Asteroids game doesn't have to look like any other. Feel free to modify it in any way you wish.
 
-Suggested steps to complete this assignment
--------------------------------------------
+Suggested steps to completing this assignment
+---------------------------------------------
 
-1. Start a new program in Processing called `AsteroidsGame`. 
-1. Copy the code in `AsteroidsGame.pde` into your program.
-1. Open a new tab and name it `Spaceship.pde`. Copy the class definition from `Spaceship.pde` above. Do the same for `Floater.pde` and `Star.pde`.
-4. Write the `Spaceship` constructor. Make sure you initialize all 9 of the inherited `protected` member variables. You may find You may find the [Asteroids Part 1 slide presentation](https://docs.google.com/presentation/d/1xEIchvoA0s2BO-HB8g9wjk1jSBH8sq9Gtkij5Y7slOs/edit) and the [Spaceship design worksheet](https://docs.google.com/document/d/1W4UuAc4IZeMx4xOUtUW0CZB_QN8SpxVv9iyBRmr58lA/edit?usp=sharing) helpful. You may also find [this sample Spaceship program](https://apcslowell.github.io/AsteroidsVariableDemoV2/) helpful in understanding how the `protected Floater` variables affect the Spaceship's movement.
-5. At the top of `AsteroidsGame.pde`, declare a variable of type `Spaceship`
-6. Initialize the `Spaceship` as a new instance of the class
-7. In `draw()` in `AsteroidsGame.pde` call the Spaceship's `show()` function
-8. When you are happy with appearance of the Spaceship, add a `public void keyPressed()` function in `AsteroidsGame.pde`
-9. Write code in `keyPressed` that allows you to control the spaceship with the keyboard. You must include the ability to turn left, turn right, accelerate, and enter "hyperspace." (There is no requirement for any fancy visual effects, hyperspace just needs to stop the ship, and give it a new random position and direction.)
-10. Add code to the `draw()` in `AsteroidsGame.pde` to `move()` the Spaceship
-11. Finish the `Star` class in `Star.pde` 
-12. Finally, add code to `AsteroidsGame.pde` that declares and initializes an array of instances of the `Star` class to create a number of stars in random positions
+1. Create a new Bullet.pde file in your AsteroidsGame folder. One way to do this is in Sublime is to choose *New | New File* and
+then choose *File | Save as* and name your file `Bullet.pde`.
+2. On line 14 of `index.html` add `Bullet.pde` to the list of files in the `data-processing-sources` and choose *File | Save*.
+3. Write a `Bullet` class that `extends Floater` in `Bullet.pde`. 
+4. Write a constructor that takes one ship argument: `Bullet(Spaceship theShip)` This constructor will 
+   - Use the `public` "getter" (accessor) functions of the `Spaceship` class to intialize `myCenterX`, `myCenterY`, `myXspeed`, `myYspeed` and `myPointDirection` of the bullet to be the same as the ship.
+   - `accelerate()` by 6.0 or so (think of this as a *push* to get the bullet moving)
+5. Override the `show()` method of the `Floater` class so that you can use circular bullets
+6. Now, add just one bullet to your program. First, just draw it to the screen. Make sure you can see it before continuing to the next step.
+7. Now, move the bullet.
+8. Now create an `ArrayList` of Bullets. The list should be empty to start with. Everytime you press the key to "shoot", add a `new Bullet` to the `ArrayList`. Modify the program with loops that draw and move all the bullets in the ArrayList
+9. Check slides 49-51 of the [Asteroids Parts 2 and 3](https://docs.google.com/presentation/d/18BHIU7ZbeqyV_DKzNzGpg_vm4Oki63K7ZYkOlyPaQE8/edit?usp=sharing) presentation for some sample code that illustrates steps 1 - 8
+10. One way to check for collisions between the bullets and the Asteroids is to write a loop within a loop. 
+   - a loop that goes through all the bullets to see if there is a collision between that bullet and the asteroid
+   - if there is a collision remove both the asteroid and the bullet from their `ArrayLists` then use `break;` to stop the loop to prevent any index out of bounds execptions.
 
-These steps are only a suggestion. Your Asteroids game doesn't have to work or act like any other. Have fun and be creative.
 
-Requirements
-----------
-* All code in the `Spaceship` and `Star` classes must be encapsulated (i.e. all members must be labeled as `public` or `private`)
-* Do not write any unnecessary code in the `Spaceship` class that duplicates inherited code
-* The Spaceship must have a hyperspace feature that stops the ship from moving, and gives it a new random position and direction 
-* All random numbers must be generated using `Math.random()`
-* Do not modify any code in the `Floater` class
-* For full credit, **you MUST include instructions on how to operate your Spaceship in the `index.html` file.** For an example look at slides 33 & 34 in the [Asteroids slide presentation](https://docs.google.com/presentation/d/1xEIchvoA0s2BO-HB8g9wjk1jSBH8sq9Gtkij5Y7slOs/edit)
+11. Submit the same URL for your AsteroidsGame that you submitted for the three previous assignments to google classroom.
 
 Extensions
 ----------
-* You can smooth out the control of the ship using booleans for each key press. There is an example [here](http://apcslowell.github.io/TwoKeys/)   
-* If you have extra time and are looking for a challenge, you might try to add an animation of "rockets" that appear from the back of the ship when you accelerate, simliar to the [this sample Spaceship program](https://apcslowell.github.io/AsteroidsVariableDemoV2/). The best way to do this is to override `show()` by copying the `show()` function from Floater into your Spaceship class. Then add an `if` statement in your Spaceship `show()` function right after `endShape(CLOSE);`. If your rockets are firing, draw additional shapes just behind your Spaceship. You can sketch out the shapes on graph paper with the ship centered at (0,0) and pointing right. The `show()` function will rotate and translate the rocket shapes to the correct position on the screen.
-
-Some important things to keep in mind
--------------------------------------
-1. You are collaborating! Most of the work for the `Spaceship` class has already been done in the `Floater` class. Don't change it! Your job is to extend the `Floater` class to "build on top of it" to make a `Spaceship` class. 
-2. To create the `Spaceship` class you only need to write a constructor and one or more functions to implement the hyperspace feature.
-3. When you are sketching out your ship on the [Spaceship design worksheet](https://drive.google.com/file/d/0Bz2ZkT6qWPYTRDJvNUJRdXFjNGs/view?usp=sharing) make sure the ship is centered at (0,0) and pointing to the right
-5. Make sure your `Spaceship` constructor initializes all 9 of the `protected` variables it inherits from `Floater`
+If you have extra time, you might add some extra features to your Asteroids game. Have fun and be creative!
+* Randomly shaped Asteroids
+* Different types of weapons besides bullets
+* Have two Asteroids classes, one large and one small. When a large Asteroid is removed from the ArrayList add two small ones with the same x and y
+* Add a second spaceship (UFO) that appears after a while and shoots at the players spaceship
+* Keep track of the score and/or the health of the ship
+* Save the score or health to [save the player's progress](https://github.com/APCSLowell/SaveProgress#how-to-save-progress)
+* Andrew Ong put a [video](https://www.youtube.com/watch?v=qiRtD9vJ2K8) up of his Asteroids Game from several years ago which has a number of amazing features.
