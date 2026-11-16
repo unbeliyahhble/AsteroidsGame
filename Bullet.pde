@@ -1,37 +1,40 @@
 class Bullet extends Floater { 
   
-  private boolean isDead; 
+  protected boolean isDead; 
   
   //constructor 
   public Bullet(Spaceship ship) { 
     corners = 4; 
     xCorners = new int[]{8, -5, -2, -5}; 
     yCorners = new int[]{0, 5, 0, -5}; 
-    
     myColor = color(255); 
     myCenterX = ship.getCX(); 
     myCenterY = ship.getCY(); 
     myXspeed = ship.getXS(); 
     myYspeed = ship.getYS(); 
     myPointDirection = ship.getPD(); 
-    
     isDead = false; 
   } 
   
-  //override move 
+  //@override move 
   public void move () { 
-    
-    myCenterX += myXspeed; 
-    myCenterY += myYspeed; 
     
     if (myCenterX > width || myCenterX < 0 || myCenterY > height || myCenterY < 0) 
       isDead = true; 
-      
+    
+    if (!isDead) {
+      myCenterX += myXspeed; 
+      myCenterY += myYspeed; 
+    } else {
+      myCenterX = -150; 
+      myCenterY = -150; 
+    } 
+    
   } 
   
   //@override show 
   public void show () { 
-    if (!isDead) {
+    if (!isDead) { 
       fill(myColor); 
       stroke(myColor); 
       ellipse((float)myCenterX, (float)myCenterY, 5.0, 5.0); 
