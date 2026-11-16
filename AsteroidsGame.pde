@@ -46,11 +46,12 @@ public void draw() {
     case 1:     
       textAlign(LEFT, BASELINE); 
       textSize(12); 
+
+      for (int i = 0; i < bullets.size(); i++) {
+        bullets.get(i).show(); 
+        bullets.get(i).move(); 
+      } 
   
-      bullets.forEach(b -> {
-        b.show(); b.move();
-      }); 
-    
       for (Star s : stars) { 
         s.show(); 
         s.move(); 
